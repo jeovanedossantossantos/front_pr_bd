@@ -62,7 +62,7 @@ const axiosBaseQuery =
         };
 
 export const baseQuery = axiosBaseQuery({
-    baseURL: "",
+    baseURL: "htpp://localhost:4000/",
 });
 
 export const rtkApi = createApi({
