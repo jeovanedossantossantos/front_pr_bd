@@ -10,8 +10,7 @@ interface AxiosQueryArgs {
     method?: AxiosRequestConfig["method"];
     data?: AxiosRequestConfig["data"];
     params?: AxiosRequestConfig["params"];
-    successMessage?: string;
-    errorMessage?: string;
+
 }
 
 interface AxiosBaseQueryProps {
