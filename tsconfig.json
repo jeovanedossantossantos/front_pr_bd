@@ -6,21 +6,36 @@
       "dom.iterable",
       "esnext"
     ],
+    "baseUrl": ".",
+    "paths":{
+      "@src/Components/*" : ["./src/components/*"],
+      "@src/Features/*" : ["./src/features/*"],
+
+    },
+  
     "allowJs": true,
     "skipLibCheck": true,
     "esModuleInterop": true,
     "allowSyntheticDefaultImports": true,
-    "strict": true,
-    "forceConsistentCasingInFileNames": true,
+    "forceConsistentCasingInFileNames": false,
     "noFallthroughCasesInSwitch": true,
+    "strict": true,
+    "useUnknownInCatchVariables": true,
+    "strictNullChecks": true,
+    "strictPropertyInitialization": true,
+    "noImplicitAny": true,
+    "strictFunctionTypes": true,
+    "strictBindCallApply": true,
+    "noImplicitThis": true,
+    "alwaysStrict": true,
     "module": "esnext",
     "moduleResolution": "node",
     "resolveJsonModule": true,
-    "isolatedModules": true,
-    "noEmit": true,
-    "jsx": "react-jsx"
+    "isolatedModules": false,
+    "noEmit": false,
+    "jsx": "react-jsx",
+    "typeRoots": ["node_modules/@types", "src/types"]
   },
-  "include": [
-    "src"
-  ]
+  "exclude": ["node_modules", "**/*.spec.ts"],
+  "include": ["src"]
 }

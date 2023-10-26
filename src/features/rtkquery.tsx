@@ -25,13 +25,13 @@ const axiosBaseQuery =
             { url, method = "get", data, params },
             api
         ) => {
-            // const token = await localStorage.getItem("accessToken");
+            const token = await localStorage.getItem("accessToken");
             const headers: Record<string, string> = {
                 "Content-Type": "application/json",
             };
-            // if (token) {
-            //     headers["token"] = `${token}`;
-            // }
+            if (token) {
+                headers["token"] = `${token}`;
+            }
 
 
             const axiosClient = axios.create({
@@ -48,10 +48,10 @@ const axiosBaseQuery =
             } catch (axiosError) {
                 const err = axiosError as AxiosError;
 
-                // if (err?.response?.statusText === "Unauthorized") {
-                //     localStorage.removeItem("accessToken");
+                if (err?.response?.statusText === "Unauthorized") {
+                    localStorage.removeItem("accessToken");
 
-                // }
+                }
                 return {
                     error: {
                         status: err.response?.status,
