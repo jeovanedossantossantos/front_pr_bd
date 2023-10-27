@@ -15,6 +15,7 @@ const ListarImovel = () => {
     const [uf, setUf] = useState<string>('');
     const [cidade, setCidade] = useState<any>('')
     const [rua, setRua] = useState<string>('')
+    const [tag, setTag] = useState<any[]>([])
 
 
     const todosImovel = async () => {
@@ -57,6 +58,37 @@ const ListarImovel = () => {
 
 
 
+    }
+    const imovelPorTag = async () => {
+        try {
+            // console.log()
+            const ta = tag.map(e => e.title)
+            if (ta.length === 1 && ta.includes(tags[0].title)) {
+                const response = await api.get(`/imovel/vender`)
+                setImovel(response.data)
+                return
+            }
+            if (ta.length === 1 && ta.includes(tags[1].title)) {
+                // /imovel/locacao
+                const response = await api.get(`/imovel/locacao`)
+                setImovel(response.data)
+                return
+
+            }
+            if (ta.length === 2) {
+                // /imovel/veder_locacao
+                const response = await api.get(`/imovel/veder_locacao`)
+                setImovel(response.data)
+                return
+
+            }
+
+
+
+
+        } catch (err) {
+            setImovel([])
+        }
     }
 
 
@@ -146,6 +178,34 @@ const ListarImovel = () => {
                     </Button>
                 </div>
 
+                <div style={{
+                    alignItems: "start"
+                }}>
+                    <Typography padding={1}>Buscar por tags</Typography>
+                    <div style={{ padding: 5 }}
+                    >
+                        <div style={{ display: "flex", justifyContent: "space-evenly" }}>
+                            <Autocomplete
+                                multiple
+                                limitTags={2}
+                                id="multiple-limit-tags"
+                                options={tags}
+                                getOptionLabel={(option) => option.title}
+                                //   defaultValue={[top100Films[13], top100Films[12], top100Films[11]]}
+                                onChange={(_event, value) => setTag(value ? value : [])}
+                                renderInput={(params) => (
+                                    <TextField {...params} label="Tags" />
+                                )}
+                                sx={{ width: '300px' }}
+                            />
+                        </div>
+
+                    </div>
+                    <Button onClick={imovelPorTag} variant="contained" endIcon={<SendIcon />}>
+                        Aplicar
+                    </Button>
+                </div>
+
             </div>
         </div>
 
@@ -186,4 +246,9 @@ const estados = [
     { label: "SE" },
     { label: "TO" }
 ];
+
+const tags = [
+    { title: 'A venda' },
+    { title: 'Alugar' },
+]
 export default ListarImovel

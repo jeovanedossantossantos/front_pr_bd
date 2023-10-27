@@ -155,8 +155,8 @@ function Row(props: any) {
                 <TableCell align="right">{row.venda === 0 ? "Não" : "Sim"}</TableCell>
                 <TableCell align="right">{row.locacao === 0 ? "Não" : "Sim"}</TableCell>
                 <TableCell align="right">{row.disponivel === 0 ? "Não" : "Sim"}</TableCell>
-                <TableCell align="right">{row.venda === 0 ? "Indisponivel" : row.valor_venda}</TableCell>
-                <TableCell align="right">{row.locacao === 0 ? "Indisponivel" : row.valor_locacao}</TableCell>
+                <TableCell align="right">{row.venda === 0 ? "Indisponivel" : "R$ " + row.valor_venda}</TableCell>
+                <TableCell align="right">{row.locacao === 0 ? "Indisponivel" : "R$ " + row.valor_locacao}</TableCell>
 
             </TableRow>
             <TableRow >
@@ -223,6 +223,43 @@ function Row(props: any) {
                                             </TableBody>
                                         </>
                                     }
+                                    {
+                                        (row.tipo === "Sala Comercial") && <>
+
+                                            <TableRow>
+
+                                                <TableCell style={{ fontSize: "18px" }}>N° comodos</TableCell>
+                                                <TableCell style={{ fontSize: "18px" }} >N° banheiros</TableCell>
+                                                <TableCell style={{ fontSize: "18px" }} >Área m<sup>2</sup></TableCell>
+
+                                            </TableRow>
+                                            <TableBody >
+                                                <TableCell style={{ fontSize: "14px" }} align="right">{row.qtd_quartos}</TableCell>
+                                                <TableCell style={{ fontSize: "14px" }} align="right">{row.qtd_vagas_garagem}</TableCell>
+                                                <TableCell style={{ fontSize: "14px" }} align="right">{row.area_imovel}</TableCell>
+
+                                            </TableBody>
+                                        </>
+                                    }
+                                    {
+                                        (row.tipo === "Terreno") && <>
+
+                                            <TableRow>
+
+                                                <TableCell style={{ fontSize: "18px" }}>Largura</TableCell>
+                                                <TableCell style={{ fontSize: "18px" }} >Comprimento</TableCell>
+                                                <TableCell style={{ fontSize: "18px" }} >Área m<sup>2</sup></TableCell>
+
+                                            </TableRow>
+                                            <TableBody >
+                                                <TableCell style={{ fontSize: "14px" }} align="right">{row.largura}</TableCell>
+                                                <TableCell style={{ fontSize: "14px" }} align="right">{row.comprimento}</TableCell>
+                                                <TableCell style={{ fontSize: "14px" }} align="right">{row.area_imovel}</TableCell>
+
+                                            </TableBody>
+                                        </>
+                                    }
+
 
 
                                 </TableCell>
